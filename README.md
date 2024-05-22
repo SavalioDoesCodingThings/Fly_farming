@@ -15,3 +15,20 @@ I added a print statement in the beginning of the game, but here's how to play:
 #### NOTE: This requires an okay cpu since it's directly impacted by the CPU performance.
 
 <br/>
+
+### QnA
+
+Q: HELP MEHH!!! MY GAME IS GIVING AN ERROR!!! YOU SUCK AT CODING
+A: Make sure that you installed Pygame, and that you have the right version of Python, since Python, and especially Pygame change a lot. If this doesn't fix the issue, please submit an issue
+
+Q: Hey uhh I noticed some bugs... wth?
+A: Submit the issue about the bug ASAP
+
+Q: I installed the game originally from Replit, will the Replit repo be updated?
+A: Nope, the Replit support is now officially cut off!
+
+Q: When is the next update coming?
+A: Who knows!
+
+Q: My question is still unanswered, what do I do?
+A: Submit an issue! I will check the issues daily, and work on any bugs to make sure that your life is bug-free! (NOTE: I live in US so if you're in Europe, it might take awhile to answer your questions.)
