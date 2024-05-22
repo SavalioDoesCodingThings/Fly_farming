@@ -10,6 +10,8 @@ I added a print statement in the beginning of the game, but here's how to play:
 * This game does **NOT** use sprites, so the collisions might be a bit buggy, but should function okay-ish
 * It took me 3 class periods (~ 2 hours) to develop the current version (not counting the readme)
 <br/>
+
 ## Thank you for the time :) please enjoy the game
 #### NOTE: This requires an okay cpu since it's directly impacted by the CPU performance.
+
 <br/>
