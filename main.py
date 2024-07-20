@@ -15,23 +15,25 @@ flyy = 0
 enemyx = 0
 enemyy = 0
 
+c = pygame.time.Clock()
+
 gameloop = True # For the game loop
 brakes = False # If the person is going into standby
 
 day_length = 5000 # Day length
 
-input("Welcome to the fly catching simulator! Your objective is to catch flies. [ENTER FOR THE HOW TO PLAY MANUAL]")
+input("Welcome to the fly farming simulator! Your objective is to catch flies. [CONTINUE WITH ENTER FOR THE HOW TO PLAY MANUAL]")
 input("""
 HOW TO PLAY
 -----------
 Use the arrow keys to accelerate
 Collect flies (brown)
 Avoid dark matter flies
-Collect as many flies as you can in one day [PRESS ENTER TO START THE GAME]
+Collect as many flies as you can in one day [CONTINUE WITH ENTER TO START THE GAME]
 """) # Explanation on how to play
 
-tax_amt = randint(1, 20) # Tax (collected at the end of the game
-
+tax_amt = randint(1, 20) # Tax (collected at the end of the game)
+print("Tax amount: " + str(tax_amt))
 money = 0 # How much the person made (1 fly = 1 money)
 
 fly_counter = 0 
@@ -46,19 +48,16 @@ while gameloop: # Game Loop
             gameloop = False
         if event.type == pygame.KEYDOWN:
             key = pygame.key.get_pressed()
-            if key[pygame.K_DOWN]:
+            if key[pygame.K_DOWN] or key[pygame.K_s]:
                 y += 1
-            elif key[pygame.K_UP]:
+            elif key[pygame.K_UP] or key[pygame.K_w]:
                 y -= 1
-            elif key[pygame.K_RIGHT]:
+            elif key[pygame.K_RIGHT] or key[pygame.K_d]:
                 x += 1
-            elif key[pygame.K_LEFT]:
+            elif key[pygame.K_LEFT] or key[pygame.K_a]:
                 x -= 1
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if not brakes:
-                brakes = True
-            elif brakes:
-                brakes = False
+            brakes = not brakes
     if not brakes: # Moves if brakes are not active
         player.x += x
         player.y += y
@@ -97,8 +96,8 @@ while gameloop: # Game Loop
     enemy.y += enemyy
 
     if fly.x > (player.x - 25) and fly.x < (player.x + 25):
-        if fly.y > (player.y - 25) and fly.y < (player.y + 25):
-            if x > 2 or x < -2 or y > 2 or y < -2:
+        if fly.y > (player.y - 25) and fly.y < (player.y + 25):        
+            if not brakes:
                 print("You got one fly!")
                 fly_counter += 1
                 print("Total fly count: " + str(fly_counter))
@@ -107,11 +106,12 @@ while gameloop: # Game Loop
 
     if enemy.x > (player.x - 25) and enemy.x < (player.x + 25):
         if enemy.y > (player.y - 25) and enemy.y < (player.y + 25):
-            print("Oh noes! A dark matter fly has rescued its friend!")
-            fly_counter -= 1
-            print("Total fly count: " + str(fly_counter))
-            enemy.x = randint(0, 950)
-            enemy.y = randint(0, 950)
+            if not brakes:
+                print("Oh noes! A dark matter fly has rescued its friend!")
+                fly_counter -= 1
+                print("Total fly count: " + str(fly_counter))
+                enemy.x = randint(0, 950)
+                enemy.y = randint(0, 950)
 
     pygame.draw.rect(window, (88, 57, 39), fly)
     pygame.draw.rect(window, (255, 0, 0), player)
@@ -122,7 +122,7 @@ while gameloop: # Game Loop
     if day_length == 0:
         gameloop = False
 
-    pygame.time.delay(10)
+    c.tick(60)
 
 money = fly_counter
 money -= tax_amt
@@ -147,4 +147,3 @@ if money > 0:
     input("Congrats! You made profit. That means you won! You can try again and see if you can make more profit!")
 else:
     input("Whoops. You lost. Try again and see if you can make profit!")
-
